@@ -1,0 +1,18 @@
+{
+  "name": "playground.rodion.pro",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Project playground catalog with per-slug prototype deploys.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "http-proxy": "^1.18.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
