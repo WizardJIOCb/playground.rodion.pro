@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>playground.rodion.pro</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">playground.rodion.pro</p>
+        <h1>Каталог прототипов</h1>
+      </div>
+      <form id="tokenForm" class="token-form" autocomplete="off">
+        <label>
+          Admin token
+          <input id="adminToken" type="password" placeholder="PLAYGROUND_ADMIN_TOKEN">
+        </label>
+        <button type="submit">Сохранить</button>
+      </form>
+    </header>
+
+    <main class="layout">
+      <section class="panel create-panel" aria-labelledby="create-title">
+        <h2 id="create-title">Новый проект</h2>
+        <form id="createForm" class="stack">
+          <label>
+            Название
+            <input name="name" required placeholder="Танки">
+          </label>
+          <label>
+            Slug
+            <input name="slug" placeholder="tank">
+          </label>
+          <button type="submit">Создать проект</button>
+        </form>
+      </section>
+
+      <section class="project-list" aria-labelledby="projects-title">
+        <div class="section-head">
+          <h2 id="projects-title">Проекты</h2>
+          <button id="refreshButton" type="button">Обновить</button>
+        </div>
+        <div id="projects" class="cards"></div>
+      </section>
+
+      <section class="panel detail-panel" aria-labelledby="detail-title">
+        <div class="section-head">
+          <h2 id="detail-title">Настройки</h2>
+          <a id="openProject" class="ghost-link" href="/" target="_blank" rel="noreferrer">Открыть</a>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          Выбери проект в каталоге или создай новый.
+        </div>
+
+        <form id="detailForm" class="detail-form hidden">
+          <div class="grid two">
+            <label>
+              Название
+              <input name="name" required>
+            </label>
+            <label>
+              Slug
+              <input name="slug" disabled>
+            </label>
+          </div>
+
+          <label>
+            Описание
+            <textarea name="description" rows="2" placeholder="Коротко, что проверяем в этом прототипе"></textarea>
+          </label>
+
+          <label>
+            GitHub repo URL
+            <input name="githubRepo" placeholder="git@github.com:WizardJIOCb/example.git">
+          </label>
+
+          <div class="grid two">
+            <label>
+              Branch
+              <input name="branch" placeholder="main">
+            </label>
+            <label>
+              Serve mode
+              <select name="serveMode">
+                <option value="static">Static build</option>
+                <option value="proxy">Proxy to running app</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label>
+              Install command
+              <input name="installCommand" placeholder="npm install">
+            </label>
+            <label>
+              Build command
+              <input name="buildCommand" placeholder="npm run build">
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label>
+              Output dir
+              <input name="outputDir" placeholder="dist">
+            </label>
+            <label>
+              Port для proxy
+              <input name="port" inputmode="numeric" placeholder="5173">
+            </label>
+          </div>
+
+          <label>
+            Start command
+            <input name="startCommand" placeholder="npm start">
+          </label>
+
+          <label class="checkbox">
+            <input name="proxyStripPrefix" type="checkbox">
+            Убирать slug prefix при proxy
+          </label>
+
+          <label>
+            Env
+            <textarea name="envText" rows="5" spellcheck="false" placeholder="KEY=value"></textarea>
+          </label>
+
+          <div class="actions">
+            <button type="submit">Сохранить</button>
+            <button type="button" data-action="sync">Git sync</button>
+            <button type="button" data-action="install">Install</button>
+            <button type="button" data-action="build">Build</button>
+            <button type="button" data-action="deploy" class="primary">Deploy</button>
+            <button type="button" data-action="start">Start</button>
+            <button type="button" data-action="stop">Stop</button>
+            <button type="button" id="deleteButton" class="danger">Удалить</button>
+          </div>
+        </form>
+
+        <div id="statusLine" class="status-line"></div>
+        <pre id="logs" class="logs" aria-live="polite"></pre>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
