@@ -1,0 +1,20 @@
+[Unit]
+Description=playground.rodion.pro
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/playground.rodion.pro
+Environment=NODE_ENV=production
+Environment=HOST=127.0.0.1
+Environment=PORT=3357
+Environment=PUBLIC_ORIGIN=https://playground.rodion.pro
+EnvironmentFile=-/etc/playground.rodion.pro.env
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
